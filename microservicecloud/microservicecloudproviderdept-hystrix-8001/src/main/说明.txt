@@ -1,0 +1,1 @@
+此方法测试最基本的hystrix 熔断调用（一般情况会（使用AOP）自定义一个FallbackFactory实现类在其中定义默认返回值）

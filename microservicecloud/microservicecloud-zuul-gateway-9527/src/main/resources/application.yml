@@ -1,0 +1,19 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name: microservicecloud-zuul-gateway
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka,http://localhost:7002/eureka,http://localhost:7003/eureka
+
+#在此做路由映射 将microservicecloud-dept -》mydept
+zuul:
+  routes:
+    mydept.serviceId: microservicecloud-dept
+    mydept.path: /mydept/**
+  ignored-services: microservicecloud-dept #忽略此地址使其不能通过其访问微服务（多个支持*）
+  prefix: /zjl #访问前缀便于管理

@@ -1,0 +1,1 @@
+hystrix-dashboard 提供服务监控 http://localhost:9001/hystrix

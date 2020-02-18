@@ -1,0 +1,23 @@
+hystrix.stream 调用问题
+
+spring boot2.0之后不提供hystrix.stream节点处理方法
+解决:
+1，在被监控的服务启动类中添加以下代码：
+@Bean
+public ServletRegistrationBean getServlet(){
+HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
+ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
+registrationBean.setLoadOnStartup(1);
+registrationBean.addUrlMappings("/hystrix.stream");
+registrationBean.setName(“HystrixMetricsStreamServlet”);
+return registrationBean;
+}
+2，在被监控的服务中添加配置，如下：
+#熔断器DashBoard：actuator在springboot2.0调整后开关 web端点的配置，”**“代表开启所有
+management:
+endpoints:
+web:
+exposure:
+include: “*”
+
+注：如果使用了配置的方式，要注意这时候访问地址就不是/hystrix.stream而是/actuator/hystrix.stream了，

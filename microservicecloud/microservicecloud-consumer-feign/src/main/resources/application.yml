@@ -1,0 +1,19 @@
+server:
+  port: 9000
+
+feign:
+  hystrix:
+    enabled: true
+
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://localhost:7001/eureka,http://localhost:7002/eureka,http://localhost:7003/eureka
+
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
+
